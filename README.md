@@ -9,6 +9,9 @@ ALX SE project covering the nitty gritty of sorting algorithms and the big O not
  * print_array
  * print_list
  * struct listint_s -Doubly linked list node
+
+<img src="willy-wonka.png">
+
 ## Tasks
 ### Mandatory Tasks
  - [x] 0. Bubble sort

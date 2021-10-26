@@ -45,7 +45,7 @@ void quicksort_r(int *array, int start, int end, size_t size)
 	if (start < end)
 	{
 		pIndex = partition(array, start, end, size);
-		quicksort_r(array, start, pIndex - 1, size)
+		quicksort_r(array, start, pIndex - 1, size);
 		quicksort_r(array, pIndex + 1, end, size);
 	}
 }

@@ -1,6 +1,25 @@
 #include "sort.h"
 
 /**
+ * node_swap - swaps out two nodes if one is greater than the other
+ * @first: pointer to 1st node.
+ * @second: pointer to 2nd node.
+ *
+ * Return: void
+ */
+void node_swap(listint_t *first, listint_t *second)
+{
+	if (first->prev)
+		first->prev->next = second;
+	if (second->next)
+		second->next->prev = first;
+	first->next = second->next;
+	second->prev = first->prev;
+	first->prev = second;
+	second->next = first;
+}
+
+/**
  * insertion_sort_list - sorts a doubly linked list of ints in ascending order
  * using the insertion sort algorithm.
  *
@@ -10,30 +29,27 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *back = null, *now = null, *front = null;
-	int flag = 1;
+	listint_t *x, *y;
 
-	if (!list)
+	/* check for nullity */
+	if (!list || !*list || !(*list)->next)
 		return;
-
-	now = list;
-	front = list->next;
-	back = list->prev;
-	while (flag)
+	x = (*list)->next;
+	while (x)
 	{
-		flag = 0;
-		while (list)
+		y = x;
+		x = x->next;
+		while (y && y->prev)
 		{
-			if (now->n > front->n)
+			if (y->prev->n > y->n)
 			{
-				now->next = front->next
-				front->next = now;
-				now->prev = front;
-				flag = 1;
-				print_list(*list);
+				node_swap(y->prev, y);
+				if (!y->prev)
+					*list = y;
+				print_list((const listint_t *) *list);
 			}
+			else
+				y = y->prev;
 		}
 	}
-					
-
-
+}
